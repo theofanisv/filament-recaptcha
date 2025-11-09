@@ -1,0 +1,48 @@
+{
+    "name": "theofanisv/filament-recaptcha",
+    "description": "Google reCAPTCHA v2 form component for Filament v4",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Theofanis Vardatsikos",
+            "email": "vardtheo@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.3",
+        "filament/filament": "^4.0",
+        "spatie/laravel-package-tools": "^1.16"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.0",
+        "orchestra/testbench": "^9.0",
+        "pestphp/pest": "^4.0",
+        "pestphp/pest-plugin-laravel": "^4.0",
+        "pestphp/pest-plugin-livewire": "^4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Theograms\\FilamentRecaptcha\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Theograms\\FilamentRecaptcha\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Theograms\\FilamentRecaptcha\\ReCaptchaServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
+}
