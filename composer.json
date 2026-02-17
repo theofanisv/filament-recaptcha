@@ -1,6 +1,6 @@
 {
     "name": "theofanisv/filament-recaptcha",
-    "description": "Google reCAPTCHA v2 form component for Filament v4",
+    "description": "Google reCAPTCHA v2 form component for Filament v4 & v5",
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -11,7 +11,7 @@
     ],
     "require": {
         "php": "^8.3",
-        "filament/filament": "^4.0",
+        "filament/filament": "^4.0|^5.0",
         "spatie/laravel-package-tools": "^1.16"
     },
     "require-dev": {

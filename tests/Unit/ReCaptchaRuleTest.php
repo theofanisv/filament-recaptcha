@@ -13,9 +13,12 @@ it('passes validation with valid token', function () {
     ]);
 
     $rule = new ReCaptchaRule();
-    $passes = $rule->passes('recaptcha', 'valid-token');
+    $failed = false;
+    $rule->validate('recaptcha', 'valid-token', function () use (&$failed) {
+        $failed = true;
+    });
 
-    expect($passes)->toBeTrue();
+    expect($failed)->toBeFalse();
 });
 
 it('fails validation with invalid token', function () {
@@ -27,16 +30,22 @@ it('fails validation with invalid token', function () {
     ]);
 
     $rule = new ReCaptchaRule();
-    $passes = $rule->passes('recaptcha', 'invalid-token');
+    $message = null;
+    $rule->validate('recaptcha', 'invalid-token', function ($msg) use (&$message) {
+        $message = $msg;
+    });
 
-    expect($passes)->toBeFalse();
+    expect($message)->not->toBeNull();
 });
 
 it('fails validation with empty token', function () {
     $rule = new ReCaptchaRule();
-    $passes = $rule->passes('recaptcha', '');
+    $message = null;
+    $rule->validate('recaptcha', '', function ($msg) use (&$message) {
+        $message = $msg;
+    });
 
-    expect($passes)->toBeFalse();
+    expect($message)->not->toBeNull();
 });
 
 it('fails validation when API request fails', function () {
@@ -45,14 +54,20 @@ it('fails validation when API request fails', function () {
     ]);
 
     $rule = new ReCaptchaRule();
-    $passes = $rule->passes('recaptcha', 'some-token');
+    $message = null;
+    $rule->validate('recaptcha', 'some-token', function ($msg) use (&$message) {
+        $message = $msg;
+    });
 
-    expect($passes)->toBeFalse();
+    expect($message)->not->toBeNull();
 });
 
-it('returns appropriate error message', function () {
+it('returns appropriate error message on empty token', function () {
     $rule = new ReCaptchaRule();
-    $rule->passes('recaptcha', '');
+    $message = null;
+    $rule->validate('recaptcha', '', function ($msg) use (&$message) {
+        $message = $msg;
+    });
 
-    expect($rule->message())->toBeString();
+    expect($message)->toBeString();
 });
