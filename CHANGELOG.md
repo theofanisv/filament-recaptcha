@@ -2,6 +2,12 @@
 
 All notable changes to the Filament reCAPTCHA plugin will be documented in this file.
 
+## [1.1.1] - 2026-11-18
+
+### Fixed
+- Google's script was printed on every page of every panel, though the field already loads it itself where it is
+  shown. It is now registered as loaded on request, so only pages with a reCAPTCHA field fetch it.
+
 ## [1.1.0] - 2025-01-09
 
 ### Added

@@ -29,7 +29,9 @@ class ReCaptchaServiceProvider extends PackageServiceProvider
     public function packageBooted(): void
     {
         FilamentAsset::register([
-            Js::make('google-recaptcha', 'https://www.google.com/recaptcha/api.js'),
+            // The field loads the script itself where it is shown (x-load-js in its view), so Filament must not
+            // print it on every page of every panel as well.
+            Js::make('google-recaptcha', 'https://www.google.com/recaptcha/api.js')->loadedOnRequest(),
         ], 'theofanisv/'.static::$name);
     }
 }
