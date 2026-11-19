@@ -2,6 +2,14 @@
 
 All notable changes to the Filament reCAPTCHA plugin will be documented in this file.
 
+## [1.1.2] - 2026-11-19
+
+### Fixed
+- A field that left the page, for example hidden by a condition, kept its `resetRecaptcha` listener, and the
+  invisible field also its `executeRecaptcha` listener and its form's submit handler. Each time the field was shown
+  again they added up, and a `resetRecaptcha` reset the widgets that were gone as well as the live one. The field now
+  removes them when it leaves the page, and stops waiting for Google's script.
+
 ## [1.1.1] - 2026-11-18
 
 ### Fixed
